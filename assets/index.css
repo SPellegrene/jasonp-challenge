@@ -1,0 +1,42 @@
+.poop a{
+  color: #c89;
+  font-size: 20px;
+}
+
+.groups{
+  color: grey;
+}
+
+.groups img{
+  border-radius: 4%;
+  box-shadow: 3px 3px lightgrey;
+  opacity: .8;
+}
+
+h1, h2{
+  color: grey;
+  text-align: center;
+}
+
+h1{
+  background-image: url("../images/banner.jpeg");
+  background-repeat: no-repeat;
+  background-size:cover;
+  height: 10rem;
+  color: white;
+  font-family: sans-serif;
+}
+
+p{
+  color: black;
+  font-size: 5px;
+}
+
+#link_id{
+  height:1rem;
+  width: 12rem;
+}
+
+*{
+background-color: whitesmoke;
+}
