@@ -1,30 +1,32 @@
 
 
-$(function(){
 
-  $.getJSON(
-    "https://www.reddit.com/r/gaming.json",
-    function foo(data){
 
-      $.each(
-        data.data.children.slice(0,5),
-        function (req, res){
-          var group = $('<div class="groups"></div>');
+
+
+function loadIt(){
+var linkID = $('#linkID').val();
+  if(linkID == 'undefined' || linkID == '' || linkID == null){
+    alert('Please enter text only')
+  } else{
+    console.log(linkID);
+  $.getJSON("https://www.reddit.com/r/" + linkID + ".json",function grabContent(stuff){
+    var group = $('<div class="groups"></div>');
+    $.each(stuff.data.children.slice(0,25),function (req, res){
           group.append($('<img/>').attr('src', res.data.thumbnail));
           var title = $('<h4 class="poop"></h4>');
-          var titleLink=$('<a></a>').attr('href', res.data.url).text(res.data.title);
+          var titleLink = $('<a></a>').attr('href', res.data.url).text(res.data.title);
           group.append(title.append(titleLink));
-
-
-          group.append( '<br>' + 'A link that this nerd used: ' + res.data.domain);
-          group.append( '<br>' + 'You Dont Suck:' + ' ' + res.data.ups);
-          group.append( '<br>' + 'You Suck:' + ' '  + res.data.downs);
+          group.append( 'You Dont Suck:' + ' ' + res.data.ups);
+          group.append( 'You Suck:' + ' '  + res.data.downs);
           group.append( '<hr>');
-          $('.reddit').append(group);
         })
-        .error(function(){alert('Retry that search silly human');})
+        $('.reddit').empty().append(group);
+
+    }) .fail(function(){
+      alert('Retry that search silly human..this aint no subreddit')
 
     })
-
-})
-  $('#link_id').on('click', loadIt);
+  }
+}
+  $('#send').on('click', loadIt);
